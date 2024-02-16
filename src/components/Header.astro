@@ -1,7 +1,10 @@
 ---
 import TextDecorationSkip from "./TextDecorationSkip.astro";
 import Cart from "./Cart.tsx";
-import CartFlyoutToggle from "./CartFlyoutToggle.tsx";
+
+import { getCart } from "../api";
+
+const cart = await getCart(Astro.request);
 ---
 
 <style>
@@ -44,7 +47,6 @@ import CartFlyoutToggle from "./CartFlyoutToggle.tsx";
     <a href="/login">
       <span class="material-icons"> login</span>
     </a>
-    <Cart client:load transition:persist />
+    <Cart client:load cart={cart} />
   </div>
-  <CartFlyoutToggle client:load />
 </header>

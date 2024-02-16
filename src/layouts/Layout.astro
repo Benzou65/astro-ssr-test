@@ -3,7 +3,6 @@ import Header from "../components/Header.astro";
 
 import "../styles/common.css";
 import CartFlyout from "../components/CartFlyout";
-import LoadCart from "../components/LoadCart";
 ---
 
 <html lang="en">
@@ -20,9 +19,8 @@ import LoadCart from "../components/LoadCart";
     </style>
   </head>
   <body>
-    <LoadCart client:only="solid-js" />
     <Header />
     <slot />
-    <CartFlyout client:load />
+    <CartFlyout client:only="solid-js" />
   </body>
 </html>

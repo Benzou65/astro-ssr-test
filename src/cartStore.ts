@@ -1,5 +1,4 @@
 import { createSignal } from "solid-js";
-import { createStore } from "solid-js/store";
 
 export type CartItem = {
   id: number;
@@ -9,26 +8,22 @@ export type CartItem = {
   quantity: number;
 };
 
-export const [getCart, setCart] = createStore<CartItem[]>([]);
+export const [localCart, setLocalCart] = createSignal<CartItem[]>([]);
 export const [isCartOpen, setIsCartOpen] = createSignal(false);
 
-type ItemDisplayInfo = Pick<CartItem, "id" | "name" | "image" | "price">;
+export type ItemDisplayInfo = Pick<CartItem, "id" | "name" | "image" | "price">;
 
-export function addCartItemWithSolidStore({
-  id,
-  name,
-  image,
-  price,
-}: ItemDisplayInfo) {
-  if (getCart.find((item) => item.id === id)) {
-    setCart(
-      (el) => el.id === id,
-      "quantity",
-      (el) => el + 1
+export function addCartItem({ id, name, image, price }: ItemDisplayInfo) {
+  if (localCart().find((item) => item.id === id)) {
+    setLocalCart(
+      localCart().map((item) => {
+        if (item.id === id) {
+          return { ...item, quantity: item.quantity + 1 };
+        }
+        return item;
+      })
     );
-    // add to localstorage
-    localStorage.setItem("cart", JSON.stringify(getCart));
   } else {
-    setCart([...getCart, { id, name, image, price, quantity: 1 }]);
+    setLocalCart([...localCart(), { id, name, image, price, quantity: 1 }]);
   }
 }
