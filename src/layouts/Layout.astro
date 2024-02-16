@@ -1,0 +1,28 @@
+---
+import Header from "../components/Header.astro";
+
+import "../styles/common.css";
+import CartFlyout from "../components/CartFlyout";
+import LoadCart from "../components/LoadCart";
+---
+
+<html lang="en">
+  <head>
+    <title>Online Store</title>
+    <style>
+      h1 {
+        font-size: 36px;
+      }
+
+      .product-listing-title {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <LoadCart client:only="solid-js" />
+    <Header />
+    <slot />
+    <CartFlyout client:load />
+  </body>
+</html>

@@ -1,0 +1,9 @@
+body {
+  font-family: "GT America Standard", "Helvetica Neue", Helvetica, Arial,
+    sans-serif;
+}
+:root {
+  --color-bg-2: hsl(17, 20%, 94%);
+  --color-bg-3: hsl(17, 20%, 88%);
+  --nav-height: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
+}

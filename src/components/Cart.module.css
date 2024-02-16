@@ -1,0 +1,17 @@
+.cart {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+}
+.cart :first-child {
+  margin-right: 5px;
+}
+
+.cart-icon {
+  font-size: 36px;
+}
+
+.count {
+  font-size: 24px;
+}

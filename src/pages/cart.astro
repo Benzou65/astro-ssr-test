@@ -1,0 +1,23 @@
+---
+import Header from "../components/Header.astro";
+import Container from "../components/Container.astro";
+import { getCart } from "../api";
+import Layout from "../layouts/Layout.astro";
+import CartTable from "../components/CartTable.tsx";
+
+if (!Astro.cookies.get("user-id")) {
+  return Astro.redirect("/");
+}
+
+// They must be logged in.
+
+const user = { name: "test" }; // getUser?
+---
+
+<Layout>
+  <Container tag="main">
+    <h1>Cart</h1>
+    <p>Hi {user.name}! Here are your cart items:</p>
+    <CartTable client:load />
+  </Container>
+</Layout>
