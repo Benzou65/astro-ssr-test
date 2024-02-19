@@ -4,14 +4,19 @@ import Container from "../components/Container.astro";
 import ProductListing from "../components/ProductListing.astro";
 import { getProducts } from "../api";
 import "../styles/common.css";
+import { getLang, useTranslations } from "../i18n/utils";
 
 const products = await getProducts(Astro.request);
+const lang = getLang(Astro.url, Astro.cookies);
+const t = useTranslations(lang);
 ---
 
 <Layout>
   <Container tag="main">
     <ProductListing products={products}>
-      <h2 class="product-listing-title" slot="title">Product Listing</h2>
+      <h2 class="product-listing-title" slot="title">
+        {t("home.product-listing")}
+      </h2>
     </ProductListing>
   </Container>
 </Layout>

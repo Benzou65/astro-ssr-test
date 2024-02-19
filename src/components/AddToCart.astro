@@ -1,5 +1,8 @@
 ---
+import { getLang, useTranslations } from "../i18n/utils";
 
+const lang = getLang(Astro.url, Astro.cookies);
+const t = useTranslations(lang);
 ---
 
 <style>
@@ -13,7 +16,6 @@
     background: #0652dd;
     cursor: pointer;
     height: 2em;
-    width: 10em;
     overflow: hidden;
     transition: transform 0.1s;
     z-index: 1;
@@ -25,11 +27,7 @@
   .pretext {
     color: #fff;
     background: #0652dd;
-    position: absolute;
-    top: 0;
-    left: 0;
     height: 100%;
-    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,5 +36,5 @@
   }
 </style>
 <button type="submit">
-  <span class="pretext">Add to cart</span>
+  <span class="pretext">{t("pdp.add-to-cart")}</span>
 </button>

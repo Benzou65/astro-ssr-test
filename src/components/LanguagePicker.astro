@@ -1,0 +1,35 @@
+---
+import { availableLanguagesPerCountry } from "../i18n/ui";
+import { getCountryFromUrl } from "../i18n/utils";
+import { LanguagesLabel } from "../i18n/ui";
+const country = getCountryFromUrl(Astro.url);
+const availableLanguages = availableLanguagesPerCountry[country];
+---
+
+<form action="/api/lang" method="POST">
+  <div>
+    {
+      availableLanguages.map((lang) => (
+        <button type="submit" name="lang" value={lang}>
+          {LanguagesLabel[lang]}
+        </button>
+      ))
+    }
+  </div>
+</form>
+<style>
+  div {
+    display: flex;
+    gap: 0.5rem;
+    height: 100%;
+    align-items: center;
+    padding: 0 1rem;
+  }
+  div > button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+</style>
