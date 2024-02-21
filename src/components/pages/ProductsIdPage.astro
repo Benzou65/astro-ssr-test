@@ -1,0 +1,33 @@
+---
+import Container from "../Container.astro";
+import AddToCart from "../AddToCart.astro";
+import { getProduct } from "../../api";
+import "../../styles/common.css";
+import AddToCartForm from "../AddToCartForm";
+import Layout from "../../layouts/Layout.astro";
+
+const id = Number(Astro.params.id);
+const product = await getProduct(Astro.request, id);
+const { lang } = Astro.props;
+---
+
+<Layout lang={lang}>
+  <Container tag="article">
+    <h2>{product.name}</h2>
+    <figure>
+      <img src={product.image} />
+      <figcaption>
+        <AddToCartForm product={{ ...product, quantity: 1 }} client:load>
+          <AddToCart />
+          <p>Description here...</p>
+        </AddToCartForm>
+      </figcaption>
+    </figure>
+  </Container>
+</Layout>
+
+<style>
+  img {
+    width: 20rem;
+  }
+</style>

@@ -14,9 +14,9 @@ export default function Cart({ cart }: { cart: Cart }) {
     setCount(localCart().reduce((acc, item) => acc + item.quantity, 0));
   });
   return (
-    <a href="/cart" class={style.cart}>
+    <>
       <span class="material-icons cart-icon">shopping_cart</span>
       <span class={style.count}>{count()}</span>
-    </a>
+    </>
   );
 }

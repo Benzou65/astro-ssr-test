@@ -1,0 +1,22 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Container from "../Container.astro";
+import ProductListing from "../ProductListing.astro";
+import { getProducts } from "../../api";
+import "../../styles/common.css";
+import { useTranslations } from "../../i18n/utils";
+
+const products = await getProducts(Astro.request);
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<Layout lang={lang}>
+  <Container tag="main">
+    <ProductListing products={products}>
+      <h2 class="product-listing-title" slot="title">
+        {t("home.product-listing")}
+      </h2>
+    </ProductListing>
+  </Container>
+</Layout>

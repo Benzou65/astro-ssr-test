@@ -1,14 +1,17 @@
 ---
 import TextDecorationSkip from "./TextDecorationSkip.astro";
 import Cart from "./Cart.tsx";
-import { getCountryFromUrl, getLang, useTranslations } from "../i18n/utils";
+import { getCountryFromUrl, useTranslations } from "../i18n/utils";
 import { getCart } from "../api";
 import LanguagePicker from "./LanguagePicker.astro";
 import { availableLanguagesPerCountry } from "../i18n/ui";
+import Link from "./Link.astro";
+import style from "./Cart.module.css";
 
 const cart = await getCart(Astro.request);
 
-const lang = getLang(Astro.url, Astro.cookies);
+const { lang } = Astro.props;
+
 const country = getCountryFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -51,12 +54,14 @@ const isLanguageSwitchEnabled =
   rel="stylesheet"
 />
 <header>
-  <h1><a href="/"><TextDecorationSkip text={t("header.title")} /></a></h1>
+  <h1><Link href="/"><TextDecorationSkip text={t("header.title")} /></Link></h1>
   <div class="right-pane">
     {isLanguageSwitchEnabled && <LanguagePicker />}
-    <a href="/login">
+    <Link href="/login">
       <span class="material-icons"> login</span>
-    </a>
-    <Cart client:load cart={cart} />
+    </Link>
+    <Link href="/cart" className={style.cart}>
+      <Cart client:load cart={cart} />
+    </Link>
   </div>
 </header>

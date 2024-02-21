@@ -1,7 +1,6 @@
 import { localCart, setIsCartOpen } from "../cartStore";
 import { isCartOpen } from "../cartStore";
 import styles from "./CartFlyout.module.css";
-import db from "../models/db.json";
 
 export default function CartFlyout() {
   return (

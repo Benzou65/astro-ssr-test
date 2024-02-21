@@ -1,0 +1,20 @@
+---
+import BaseIndex from "../../components/pages/IndexPage.astro";
+import { availableLanguagesPerCountry } from "../../i18n/ui";
+import { getCountryFromUrl } from "../../i18n/utils";
+const { locale } = Astro.params;
+
+const country = getCountryFromUrl(Astro.url);
+
+const isLocaleAvailable = Boolean(
+  availableLanguagesPerCountry[country].find((lang) => lang === locale)
+);
+
+if (locale && !isLocaleAvailable) {
+  return new Response(null, {
+    status: 404,
+  });
+}
+---
+
+<BaseIndex lang={locale} />

@@ -1,23 +1,11 @@
 ---
-import Container from "../components/Container.astro";
-import { getCart } from "../api";
-import Layout from "../layouts/Layout.astro";
-import CartTable from "../components/CartTable.tsx";
+import { getLang } from "../i18n/utils";
+import CartPage from "../components/pages/CartPage.astro";
 
 if (!Astro.cookies.get("user-id")) {
   return Astro.redirect("/");
 }
-
-// They must be logged in.
-
-const user = { name: "test" }; // getUser?
-const cart = await getCart(Astro.request);
+const lang = getLang(Astro.url, Astro.cookies);
 ---
 
-<Layout>
-  <Container tag="main">
-    <h1>Cart</h1>
-    <p>Hi {user.name}! Here are your cart items:</p>
-    <CartTable client:load cart={cart} />
-  </Container>
-</Layout>
+<CartPage lang={lang} />

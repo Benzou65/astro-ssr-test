@@ -1,15 +1,16 @@
 ---
 import Header from "../components/Header.astro";
 import CartFlyout from "../components/CartFlyout";
+import { useTranslations } from "../i18n/utils";
 import "../styles/common.css";
 
-import { getLang } from "../i18n/utils";
-const lang = getLang(Astro.url, Astro.cookies);
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <html lang={lang}>
   <head>
-    <title>Online Store</title>
+    <title>{t("header.title")}</title>
     <meta charset="utf-8" />
     <style>
       h1 {
@@ -22,8 +23,8 @@ const lang = getLang(Astro.url, Astro.cookies);
     </style>
   </head>
   <body>
-    <Header />
+    <Header lang={lang} />
     <slot />
-    <CartFlyout client:load />
+    <CartFlyout client:only="solid-js" />
   </body>
 </html>

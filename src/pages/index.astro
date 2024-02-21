@@ -1,22 +1,18 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Container from "../components/Container.astro";
-import ProductListing from "../components/ProductListing.astro";
-import { getProducts } from "../api";
-import "../styles/common.css";
-import { getLang, useTranslations } from "../i18n/utils";
+import BaseIndex from "../components/pages/IndexPage.astro";
+import { availableLanguagesPerCountry } from "../i18n/ui";
+import { getLang, getCountryFromUrl } from "../i18n/utils";
 
-const products = await getProducts(Astro.request);
 const lang = getLang(Astro.url, Astro.cookies);
-const t = useTranslations(lang);
+const country = getCountryFromUrl(Astro.url);
+
+// Redirect to correct lang if not present in slug
+if (
+  availableLanguagesPerCountry[country].length > 1 &&
+  Astro.url.pathname === "/"
+) {
+  return Astro.redirect(`/${lang}`);
+}
 ---
 
-<Layout>
-  <Container tag="main">
-    <ProductListing products={products}>
-      <h2 class="product-listing-title" slot="title">
-        {t("home.product-listing")}
-      </h2>
-    </ProductListing>
-  </Container>
-</Layout>
+<BaseIndex lang={lang} />

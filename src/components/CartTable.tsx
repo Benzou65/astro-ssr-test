@@ -1,17 +1,21 @@
 import type { Cart } from "../api";
+import type { ui } from "../i18n/ui";
+import { useTranslations } from "../i18n/utils";
 
 type Props = {
   cart: Cart;
+  lang: keyof typeof ui;
 };
 
-export default function CartTable({ cart }: Props) {
+export default function CartTable({ cart, lang }: Props) {
+  const t = useTranslations(lang);
   return (
     <table>
       <thead>
         <tr>
           <th></th>
-          <th>Item</th>
-          <th>Count</th>
+          <th>{t("cart.item")}</th>
+          <th>{t("cart.count")}</th>
         </tr>
       </thead>
       <tbody>

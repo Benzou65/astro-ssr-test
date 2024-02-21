@@ -1,0 +1,10 @@
+---
+import { createUrlForLang, getCountryFromUrl, getLang } from "../i18n/utils";
+
+const { href, className } = Astro.props;
+
+const country = getCountryFromUrl(Astro.url);
+const lang = getLang(Astro.url, Astro.cookies);
+---
+
+<a href={createUrlForLang(country, lang, href)} class={className}><slot /></a>

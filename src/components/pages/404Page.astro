@@ -1,0 +1,13 @@
+---
+import { useTranslations } from "../../i18n/utils";
+import Layout from "../../layouts/Layout.astro";
+
+const { lang } = Astro.props;
+
+const t = useTranslations(lang);
+---
+
+<Layout lang={lang}>
+  <h1>404</h1>
+  <p>{t("404.page-not-found")}</p>
+</Layout>

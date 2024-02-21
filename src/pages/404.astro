@@ -1,0 +1,15 @@
+---
+import { useTranslations } from "../i18n/utils";
+import Layout from "../layouts/Layout.astro";
+
+import { getLang } from "../i18n/utils";
+
+const lang = getLang(Astro.url, Astro.cookies);
+
+const t = useTranslations(lang);
+---
+
+<Layout lang={lang}>
+  <h1>404</h1>
+  <p>{t("404.page-not-found")}</p>
+</Layout>

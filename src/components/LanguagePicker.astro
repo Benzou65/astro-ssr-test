@@ -4,9 +4,12 @@ import { getCountryFromUrl } from "../i18n/utils";
 import { LanguagesLabel } from "../i18n/ui";
 const country = getCountryFromUrl(Astro.url);
 const availableLanguages = availableLanguagesPerCountry[country];
+
+const origin = Astro.url.href;
 ---
 
 <form action="/api/lang" method="POST">
+  <input type="hidden" name="origin" value={origin} />
   <div>
     {
       availableLanguages.map((lang) => (

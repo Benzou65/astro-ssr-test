@@ -1,7 +1,7 @@
 import type { AstroCookies } from "astro";
 import { ui, defaultLang } from "./ui";
-
-enum Countries {
+import { availableLanguagesPerCountry } from "./ui";
+export enum Countries {
   us = "us",
   be = "be",
   fr = "fr",
@@ -33,10 +33,16 @@ export function getLang(url: URL, cookies: AstroCookies) {
   const country = getCountryFromUrl(url);
   const favLang = getLangFromCookie(cookies);
 
-  if (country === "be") {
-    if (favLang) return favLang as keyof typeof ui;
-    return "nl";
+  const isLocaleAvailable = Boolean(
+    availableLanguagesPerCountry[country].find((lang) => lang === favLang)
+  );
+  if (availableLanguagesPerCountry[country].length > 1) {
+    if (favLang && isLocaleAvailable) {
+      return favLang;
+    }
+    return availableLanguagesPerCountry[country][0];
   }
+
   // check if country is in the list of languages
   if (Object.keys(ui).includes(country)) {
     return country as keyof typeof ui;
@@ -48,4 +54,16 @@ export function useTranslations(lang: keyof typeof ui) {
   return function t(key: keyof (typeof ui)[typeof defaultLang]) {
     return ui[lang][key] || ui[defaultLang][key];
   };
+}
+
+export function createUrlForLang(
+  country: Countries,
+  lang: keyof typeof ui,
+  href: string
+) {
+  if (availableLanguagesPerCountry[country].length > 1) {
+    return `/${lang}${href}`;
+  } else {
+    return `${href}`;
+  }
 }
