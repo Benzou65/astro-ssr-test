@@ -58,7 +58,7 @@ const { products } = Astro.props;
       <li class="product">
         <Link href={`/products/${product.id}`}>
           <figure>
-            <img src={product.image} />
+            <img src={product.image} alt="" />
             <figcaption>
               <div class="name">{product.name}</div>
               <div class="price">${product.price}</div>

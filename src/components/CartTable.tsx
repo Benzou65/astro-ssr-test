@@ -15,7 +15,7 @@ export default function CartTable({ cart, lang }: Props) {
         <tr>
           <th></th>
           <th>{t("cart.item")}</th>
-          <th>{t("cart.count")}</th>
+          <th>{t("cart.quantity")}</th>
         </tr>
       </thead>
       <tbody>
@@ -26,6 +26,7 @@ export default function CartTable({ cart, lang }: Props) {
             >
               <img
                 src={item.image}
+                alt=""
                 style={{ "object-fit": "cover", width: "100%", height: "100%" }}
               />
             </td>

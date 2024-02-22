@@ -1,0 +1,8 @@
+---
+import BaseIndex from "../../../components/pages/IndexPage.astro";
+import { getDomainAndLang } from "../../../utils";
+
+const [, lang] = getDomainAndLang(Astro.url.pathname);
+---
+
+<BaseIndex lang={lang} />

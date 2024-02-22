@@ -1,0 +1,8 @@
+---
+import CartPage from "../../../components/pages/CartPage.astro";
+import { getDomainAndLang } from "../../../utils";
+
+const [, lang] = getDomainAndLang(Astro.url.pathname);
+---
+
+<CartPage lang={lang} />

@@ -1,0 +1,15 @@
+---
+import { availableLanguagesPerCountry } from "../../i18n/ui";
+import { getLangFromCookie } from "../../i18n/utils";
+
+const favLang = getLangFromCookie(Astro.cookies);
+const domain = Astro.url.pathname.replaceAll("/", "");
+
+if (favLang) {
+  return Astro.redirect(`${domain}/${favLang}`);
+} else {
+  return Astro.redirect(
+    `/${domain}/${availableLanguagesPerCountry[domain][0]}`
+  );
+}
+---

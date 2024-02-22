@@ -1,21 +1,14 @@
 import type { APIContext, APIRoute } from "astro";
 
-function replaceLocaleInUrl(url: string, newLocale: string) {
-  // This regular expression matches the protocol, any domain and any port,
-  // and captures them in group 1. It then matches any two or more letter
-  // locale (not just two, to be more flexible) followed by a slash, to replace
-  // it with the new locale.
-  const regex = /^(https?:\/\/[^\/]+\/)[a-z]{2,}\//i;
-  return url.replace(regex, `$1${newLocale}/`);
+function replaceLocaleInUrl(url: string, newLocale: string): string {
+  const localeRegex = /(?<=\/[a-zA-Z]{2}\/)[a-zA-Z]{2}(-[a-zA-Z]{2})?(\/|$)/;
+  return url.replace(localeRegex, `${newLocale}$2`);
 }
 
 export const POST: APIRoute = async ({
   cookies,
-  currentLocale,
-  preferredLocale,
-  preferredLocaleList,
+
   request,
-  site,
 }: APIContext) => {
   const body = await new Response(request.body).text();
 

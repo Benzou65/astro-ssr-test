@@ -1,8 +1,15 @@
 import { localCart, setIsCartOpen } from "../cartStore";
 import { isCartOpen } from "../cartStore";
+import { useTranslations } from "../i18n/utils";
+import { ui } from "../i18n/ui";
 import styles from "./CartFlyout.module.css";
 
-export default function CartFlyout() {
+type Props = {
+  lang: keyof typeof ui;
+};
+
+export default function CartFlyout({ lang }: Props) {
+  const t = useTranslations(lang);
   return (
     <aside hidden={!isCartOpen()} class={styles.container}>
       <div class={styles.closeIcon}>
@@ -18,7 +25,9 @@ export default function CartFlyout() {
                 alt={cartItem.name}
               />
               <h3>{cartItem.name}</h3>
-              <p>Quantity: {cartItem.quantity}</p>
+              <p>
+                {t("cart.quantity")}: {cartItem.quantity}
+              </p>
             </li>
           ))}
         </ul>

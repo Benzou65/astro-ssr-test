@@ -1,9 +1,11 @@
 ---
-import { availableLanguagesPerCountry } from "../i18n/ui";
-import { getCountryFromUrl } from "../i18n/utils";
 import { LanguagesLabel } from "../i18n/ui";
-const country = getCountryFromUrl(Astro.url);
-const availableLanguages = availableLanguagesPerCountry[country];
+import { availableLanguagesPerCountry } from "../i18n/ui";
+type AvailableLanguages = typeof availableLanguagesPerCountry;
+interface Props {
+  languages: AvailableLanguages[keyof AvailableLanguages];
+}
+const { languages } = Astro.props;
 
 const origin = Astro.url.href;
 ---
@@ -12,7 +14,7 @@ const origin = Astro.url.href;
   <input type="hidden" name="origin" value={origin} />
   <div>
     {
-      availableLanguages.map((lang) => (
+      languages.map((lang) => (
         <button type="submit" name="lang" value={lang}>
           {LanguagesLabel[lang]}
         </button>

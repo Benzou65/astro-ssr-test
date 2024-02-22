@@ -25,6 +25,6 @@ const t = useTranslations(lang);
   <body>
     <Header lang={lang} />
     <slot />
-    <CartFlyout client:only="solid-js" />
+    <CartFlyout lang={lang} client:only="solid-js" />
   </body>
 </html>

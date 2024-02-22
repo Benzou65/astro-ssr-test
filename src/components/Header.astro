@@ -5,6 +5,7 @@ import { getCountryFromUrl, useTranslations } from "../i18n/utils";
 import { getCart } from "../api";
 import LanguagePicker from "./LanguagePicker.astro";
 import { availableLanguagesPerCountry } from "../i18n/ui";
+import { getDomainAndLang } from "../utils";
 import Link from "./Link.astro";
 import style from "./Cart.module.css";
 
@@ -12,12 +13,37 @@ const cart = await getCart(Astro.request);
 
 const { lang } = Astro.props;
 
-const country = getCountryFromUrl(Astro.url);
+const [country, _lang] = getDomainAndLang(Astro.url.pathname);
 const t = useTranslations(lang);
 
 const isLanguageSwitchEnabled =
   availableLanguagesPerCountry[country].length > 1;
 ---
+
+<link
+  href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet"
+/>
+<header>
+  <h1>
+    <Link href="/">
+      <TextDecorationSkip text={t("header.title")} />
+    </Link>
+  </h1>
+  <div class="right-pane">
+    {
+      isLanguageSwitchEnabled && (
+        <LanguagePicker languages={availableLanguagesPerCountry[country]} />
+      )
+    }
+    <Link href="/login">
+      <span class="material-icons"> login</span>
+    </Link>
+    <Link href="/cart" className={style.cart}>
+      <Cart client:load cart={cart} />
+    </Link>
+  </div>
+</header>
 
 <style>
   @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
@@ -49,19 +75,3 @@ const isLanguageSwitchEnabled =
     margin-right: 1rem;
   }
 </style>
-<link
-  href="https://fonts.googleapis.com/icon?family=Material+Icons"
-  rel="stylesheet"
-/>
-<header>
-  <h1><Link href="/"><TextDecorationSkip text={t("header.title")} /></Link></h1>
-  <div class="right-pane">
-    {isLanguageSwitchEnabled && <LanguagePicker />}
-    <Link href="/login">
-      <span class="material-icons"> login</span>
-    </Link>
-    <Link href="/cart" className={style.cart}>
-      <Cart client:load cart={cart} />
-    </Link>
-  </div>
-</header>

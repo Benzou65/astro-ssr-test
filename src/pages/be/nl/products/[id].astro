@@ -1,0 +1,8 @@
+---
+import BaseProductsId from "../../../../components/pages/ProductsIdPage.astro";
+import { getDomainAndLang } from "../../../../utils";
+
+const [, lang] = getDomainAndLang(Astro.url.pathname);
+---
+
+<BaseProductsId lang={lang} />
