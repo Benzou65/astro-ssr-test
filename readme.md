@@ -14,15 +14,9 @@ yarn dev
 
 ### i18n
 
-To test the i18n features, you need to add those lines to your `hosts` file in `/etc` folder.
-
-```
-127.0.0.1   fr.localhost
-127.0.0.1   be.localhost
-```
-
 Then you can access the app using the following urls:
 
-- 🇬🇧 [http://localhost:4321](http://localhost:4321)
-- 🇫🇷 [http://fr.localhost:4321](http://fr.localhost:4321)
-- 🇫🇷🇳🇱 [http://be.localhost:4321](http://be.localhost:4321)
+- 🇬🇧 [https://localhost:4321/us/en](http://localhost:4321/us/en)
+- 🇫🇷 [https://fr.localhost:4321/fr/fr](http://fr.localhost:4321/fr/fr)
+- 🇧🇪🇫🇷 [https://be.localhost:4321/be/fr](http://be.localhost:4321/be/fr)
+- 🇧🇪🇳🇱 [https://be.localhost:4321/be/nl](http://be.localhost:4321/be/nl)

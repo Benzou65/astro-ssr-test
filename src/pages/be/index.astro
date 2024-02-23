@@ -6,7 +6,8 @@ const favLang = getLangFromCookie(Astro.cookies);
 const domain = Astro.url.pathname.replaceAll("/", "");
 
 if (favLang) {
-  return Astro.redirect(`${domain}/${favLang}`);
+  const url = domain + "/" + favLang;
+  return Astro.redirect(url);
 } else {
   return Astro.redirect(
     `/${domain}/${availableLanguagesPerCountry[domain][0]}`

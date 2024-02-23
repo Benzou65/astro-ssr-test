@@ -576,6 +576,21 @@
   resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.11.0.tgz#a59158f78d07cd3ac15092ffca2f0319f3bb69f6"
   integrity sha512-f3I7h9oTg79UitEco9/2bzwdciYkWr8pITs3meSDSlr1TdvQ7IxkQaaYN2YqZXX5uZhiYL+VuYDmHwNzhx+HOg==
 
+"@storyblok/astro@^4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@storyblok/astro/-/astro-4.0.2.tgz#cf9f83bebc462cb00cd035b07cd7ed774979cbe6"
+  integrity sha512-m3xP7+NCrku7SkJtdO2Ri+95R67GzGVC86u36lh8XwXwHuYqOB/eQxKw0vRJZKcNgkPcg18wfigJSCKyggQr6g==
+  dependencies:
+    "@storyblok/js" "^3.0.6"
+    camelcase "^8.0.0"
+
+"@storyblok/js@^3.0.6":
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/@storyblok/js/-/js-3.0.6.tgz#e26bc21c44fd0c6cf1f616acdc8f983c4cec93e6"
+  integrity sha512-Kbz5D1pcKWgjqecF+rz1bq5742YpCZe7+B8Zrtp979QOXFpAurHm2BrmzVZy75G2BevWR5CcsK9MzLnyief1Kw==
+  dependencies:
+    storyblok-js-client "^6.6.3"
+
 "@types/babel__core@^7.20.4":
   version "7.20.5"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.20.5.tgz#3df15f27ba85319caa07ba08d0721889bb39c017"
@@ -661,6 +676,11 @@
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@ungap/structured-clone/-/structured-clone-1.2.0.tgz#756641adb587851b5ccb3e095daf27ae581c8406"
   integrity sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==
+
+"@vitejs/plugin-basic-ssl@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@vitejs/plugin-basic-ssl/-/plugin-basic-ssl-1.1.0.tgz#8b840305a6b48e8764803435ec0c716fa27d3802"
+  integrity sha512-wO4Dk/rm8u7RNhOf95ZzcEmC9rYOncYgvq4z3duaJrCgjN8BxAnDVyndanfcJZ0O6XZzHz6Q0hTimxTg8Y9g/A==
 
 "@volar/kit@~2.0.4":
   version "2.0.4"
@@ -1043,6 +1063,11 @@ camelcase@^7.0.1:
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-7.0.1.tgz#f02e50af9fd7782bc8b88a3558c32fd3a388f048"
   integrity sha512-xlx1yCK2Oc1APsPXDL2LdlNP6+uu8OCDdhOBSVT279M/S+y75O30C2VuD8T2ogdePBBl7PfPF4504tnLgX3zfw==
+
+camelcase@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-8.0.0.tgz#c0d36d418753fb6ad9c5e0437579745c1c14a534"
+  integrity sha512-8WB3Jcas3swSvjIeA2yvCJ+Miyz5l1ZmB6HFb9R1317dt9LCQoswg/BGrmAmkWVEszSrrg4RwmO46qIm2OEnSA==
 
 caniuse-lite@^1.0.30001587:
   version "1.0.30001587"
@@ -3236,6 +3261,11 @@ stdin-discarder@^0.1.0:
   dependencies:
     bl "^5.0.0"
 
+storyblok-js-client@^6.6.3:
+  version "6.6.7"
+  resolved "https://registry.yarnpkg.com/storyblok-js-client/-/storyblok-js-client-6.6.7.tgz#6aced8dd848ac1bc6d35705def5490d016aae3d0"
+  integrity sha512-QNCGGOUf3cgkflffNStCZNt3C7RkdYRD/vENm6iv1pC+0ZCj42kDeB/WgljWojcNWydEMyUnmGXWi2XUEkkAAQ==
+
 stream-parser@~0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/stream-parser/-/stream-parser-0.3.1.tgz#1618548694420021a1182ff0af1911c129761773"
@@ -3644,6 +3674,17 @@ vite@^5.0.12:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/vite/-/vite-5.1.2.tgz#34e04d38db27ceebe6f0c9d053ea14d6496753d1"
   integrity sha512-uwiFebQbTWRIGbCaTEBVAfKqgqKNKMJ2uPXsXeLIZxM8MVMjoS3j0cG8NrPxdDIadaWnPSjrkLWffLSC+uiP3Q==
+  dependencies:
+    esbuild "^0.19.3"
+    postcss "^8.4.35"
+    rollup "^4.2.0"
+  optionalDependencies:
+    fsevents "~2.3.3"
+
+vite@^5.1.4:
+  version "5.1.4"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-5.1.4.tgz#14e9d3e7a6e488f36284ef13cebe149f060bcfb6"
+  integrity sha512-n+MPqzq+d9nMVTKyewqw6kSt+R3CkvF9QAKY8obiQn8g1fwTscKxyfaYnC632HtBXAQGc1Yjomphwn1dtwGAHg==
   dependencies:
     esbuild "^0.19.3"
     postcss "^8.4.35"

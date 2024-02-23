@@ -5,10 +5,20 @@ import ProductListing from "../ProductListing.astro";
 import { getProducts } from "../../api";
 import "../../styles/common.css";
 import { useTranslations } from "../../i18n/utils";
+import { useStoryblokApi } from "@storyblok/astro";
+import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
 
+const storyblokApi = useStoryblokApi();
 const products = await getProducts(Astro.request);
-const { lang } = Astro.props;
+const { domain, lang } = Astro.props;
 const t = useTranslations(lang);
+
+const { data } = await storyblokApi.get(`cdn/stories/${domain}`, {
+  version: "draft",
+  language: lang + "-" + domain,
+});
+
+const content = data.story.content;
 ---
 
 <Layout lang={lang}>
@@ -17,6 +27,7 @@ const t = useTranslations(lang);
       <h2 class="product-listing-title" slot="title">
         {t("home.product-listing")}
       </h2>
+      <StoryblokComponent blok={content} slot="description" />
     </ProductListing>
   </Container>
 </Layout>
